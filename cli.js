@@ -9,6 +9,14 @@ child.on('close', function (code) {
   process.exit(code)
 })
 
+child.stdio.on('data', function (data) {
+  console.log(data)
+})
+
+child.stderr.on('data', function (data) {
+  console.log(data)
+})
+
 child.on('error', (err) => {
   console.log('Failed to start child process.', ['xvfb-run'].concat(electron, process.argv.slice(2)));
 });
